@@ -1,0 +1,4 @@
+# depslib dependency file v1.0
+1470807754 source:/home/mohit/PingPongGame/PingPongGame/main.cpp
+	<GL/glut.h>
+
