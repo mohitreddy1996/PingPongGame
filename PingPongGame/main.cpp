@@ -1,10 +1,38 @@
+#include <bits/stdc++.h>
 
 #include <GL/glut.h>
+#include <GL/freeglut.h>
+#include "racquet.h"
+#include "utils.h"
 
-// define the length and width of the console window.
-int length = 500;
-int width = 400;
-int interval = 1000/60; // 60 fps.
+using namespace std;
+
+// console window dimensions;
+const int width = 500;
+const int length = 500;
+const int interval = 1000/60;
+
+// player scores.
+int leftPlayer = 0;
+int rightPlayer = 0;
+
+// Racquet dimensions and utils.
+const int racquet_height = 50;
+const int racquet_width = 10;
+const int racquet_speed = 3;
+
+// position the racquets.
+float racquet_left_x = 10.0f;
+float racquet_left_y = 250.0f;
+float racquet_right_x = length - racquet_width - 10.0f;
+float racquet_right_y = 250.0f;
+
+// draw the required scores on the top of the screen.
+
+void draw_score(float x, float y, string text){
+    glRasterPos2f(x, y);
+    glutBitmapString(GLUT_BITMAP_8_BY_13, (const unsigned char*)text.c_str());
+}
 
 // write a function for all the objects to be shown.
 void draw(){
@@ -13,6 +41,11 @@ void draw(){
     glLoadIdentity();
 
     // required elements to be drawn here.
+    draw_racquets(racquet_left_x, racquet_left_y, racquet_width, racquet_height);
+    draw_racquets(racquet_right_x, racquet_right_y, racquet_width, racquet_height);
+
+    // draw the score.
+    draw_score(length/2 - 25, width - 15, int2str(leftPlayer) + " : " + int2str(rightPlayer));
 
     // swap buffers.
     glutSwapBuffers();
