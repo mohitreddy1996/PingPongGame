@@ -1,33 +1,59 @@
-/*
- * GL01Hello.cpp: Test OpenGL C/C++ Setup
 
-#include <GL/glut.h>  // GLUT, includes glu.h and gl.h
+#include <GL/glut.h>
 
-/* Handler for window-repaint event. Call back when the window first appears and
-   whenever the window needs to be re-painted. */
-void display() {
-   glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Set background color to black and opaque
-   glClear(GL_COLOR_BUFFER_BIT);         // Clear the color buffer
+// define the length and width of the console window.
+int length = 500;
+int width = 400;
+int interval = 1000/60; // 60 fps.
 
-   // Draw a Red 1x1 Square centered at origin
-   glBegin(GL_QUADS);              // Each set of 4 vertices form a quad
-      glColor3f(1.0f, 0.0f, 0.0f); // Red
-      glVertex2f(-0.5f, -0.5f);    // x, y
-      glVertex2f( 0.5f, -0.5f);
-      glVertex2f( 0.5f,  0.5f);
-      glVertex2f(-0.5f,  0.5f);
-   glEnd();
+// write a function for all the objects to be shown.
+void draw(){
+    // clear the buffer first.
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glLoadIdentity();
 
-   glFlush();  // Render now
+    // required elements to be drawn here.
+
+    // swap buffers.
+    glutSwapBuffers();
 }
 
-/* Main function: GLUT runs as a console application starting at main()  */
+// write a function for ball and the raquet movements.
+void update(int value){
+
+    // recall the function (update) after the given interval.
+    glutTimerFunc(interval, update, 0);
+
+    // redisplay the updated frame.
+    glutPostRedisplay();
+
+}
+
+void enable2D(int width, int height) {
+    glViewport(0, 0, width, height);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(0.0f, width, 0.0f, height, 0.0f, 1.0f);
+    glMatrixMode (GL_MODELVIEW);
+    glLoadIdentity();
+}
+
+
 int main(int argc, char** argv) {
-   glutInit(&argc, argv);                 // Initialize GLUT
-   glutCreateWindow("OpenGL Setup Test"); // Create a window with the given title
-   glutInitWindowSize(320, 320);   // Set the window's initial width & height
-   glutInitWindowPosition(50, 50); // Position the window's initial top-left corner
-   glutDisplayFunc(display); // Register display callback handler for window re-paint
-   glutMainLoop();           // Enter the infinitely event-processing loop
-   return 0;
+    glutInit(&argc, argv);
+    glutCreateWindow("Ping Pong Game");
+    glutInitWindowSize(length, width);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+
+   // register the callback functions. 1) draw function 2) gluTimefun to call the update function after given milliseconds.
+    glutDisplayFunc(draw);
+    glutTimerFunc(interval, update, 0);
+
+    // setup the display as 2D display.
+    enable2D(length, width);
+    // draw color = white.
+    glColor3f(1.0f, 1.0f, 1.0f);
+
+    glutMainLoop();
+    return 0;
 }
