@@ -38,6 +38,10 @@
 			<Add library="glut" />
 		</Linker>
 		<Unit filename="main.cpp" />
+		<Unit filename="racquet.cpp" />
+		<Unit filename="racquet.h" />
+		<Unit filename="utils.cpp" />
+		<Unit filename="utils.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

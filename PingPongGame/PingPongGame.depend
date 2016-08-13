@@ -1,23 +1,34 @@
 # depslib dependency file v1.0
-1470924927 source:/home/mohit/PingPongGame/PingPongGame/main.cpp
+1471114218 source:/home/mohit/PingPongGame/PingPongGame/main.cpp
 	<bits/stdc++.h>
 	<GL/glut.h>
 	<GL/freeglut.h>
+	<GL/glfw.h>
 	"racquet.h"
+	"ball.h"
 	"utils.h"
 
-1470924616 /home/mohit/PingPongGame/PingPongGame/racquet.h
+1471106076 /home/mohit/PingPongGame/PingPongGame/racquet.h
 	"utils.h"
+	"ball.h"
 
-1470924918 /home/mohit/PingPongGame/PingPongGame/utils.h
+1471106194 /home/mohit/PingPongGame/PingPongGame/utils.h
 	<bits/stdc++.h>
 	<GL/glut.h>
 	<GL/freeglut.h>
 
-1470924891 source:/home/mohit/PingPongGame/PingPongGame/utils.cpp
+1471106201 source:/home/mohit/PingPongGame/PingPongGame/utils.cpp
 	"utils.h"
 
 1470924945 source:/home/mohit/PingPongGame/PingPongGame/racquet.cpp
 	"racquet.h"
 	"utils.h"
+
+1471106384 /home/mohit/PingPongGame/PingPongGame/ball.h
+	"utils.h"
+
+1471114442 source:/home/mohit/PingPongGame/PingPongGame/ball.cpp
+	"ball.h"
+	"utils.h"
+	"racquet.h"
 

@@ -9,9 +9,10 @@ extern const int length;
 extern const int width;
 extern const int interval; // 60 fps.
 
+extern int rightPlayer;
+extern int leftPlayer;
 
 // int to str.
 std::string int2str(int x);
-
 
 #endif
